@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Texture Scale Study</title>
+
+  <script src="https://unpkg.com/jspsych@8"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-preload@2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-browser-check@2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2"></script>
+  <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@8/css/jspsych.css">
+
+  <style>
+    /* Neutral mid-grey field: standard for psychophysics, and keeps the
+       surround from biasing perceived contrast in the stimuli. */
+    :root {
+      --field: #7f7f7f;
+      --ink: #111;
+      --panel: #eae8e4;
+      --img-size: 240px;   /* fixed display size for every stimulus */
+      --gap-within: 14px;  /* gap between the two images of one interval */
+      --gap-between: 34px; /* gap between the two intervals */
+    }
+
+    html, body {
+      background: var(--field);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    .jspsych-display-element { font-size: 16px; }
+
+    /* Readable text panel so instructions aren't set on mid-grey */
+    .prose {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--panel);
+      padding: 28px 34px;
+      text-align: left;
+      line-height: 1.55;
+      border-radius: 3px;
+    }
+    .prose h2 { margin-top: 0; font-size: 20px; font-weight: 600; }
+    .prose ul { padding-left: 20px; }
+
+    /* --- Quadruple layout --------------------------------------------- */
+    .quad { display: flex; flex-direction: column; align-items: center;
+            gap: var(--gap-between); margin-bottom: 26px; }
+    .interval { display: flex; gap: var(--gap-within); }
+    .interval img {
+      width: var(--img-size); height: var(--img-size);
+      display: block; image-rendering: auto;
+    }
+    .quad-prompt { margin-bottom: 20px; font-size: 17px; }
+
+    .jspsych-btn {
+      font-size: 16px; padding: 10px 26px; margin: 0 10px;
+      border-radius: 3px; cursor: pointer;
+    }
+    .jspsych-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body></body>
+<script>
+/* =====================================================================
+   CONFIGURATION — edit this block, leave the rest alone
+   ===================================================================== */
+
+const CONFIG = {
+  // DataPipe experiment ID (from your dashboard)
+  pipe_id: "Jv61YWfxyKAY",
+
+  // Prolific completion URL. Get the code from your Prolific study settings.
+  prolific_completion_url: "https://app.prolific.com/submissions/complete?cc=REPLACE_ME",
+
+  // Your content/style sets. These strings must match your filenames.
+  sets: ["set01", "set02", "set03", "set04", "set05", "set06", "set07", "set08"],
+
+  // Number of scale steps per set
+  n_steps: 7,
+
+  // How a stimulus filename is built. Adjust to match what you exported.
+  // Default expects:  images/set01_step3.png
+  image_path: (set, step) => `images/${set}_step${step}.png`,
+
+  // Session structure
+  n_real_trials: 31,
+  n_catch_trials: 4,
+
+  // Catch trials contrast a tiny interval against a huge one. A participant
+  // paying any attention gets these right; used only for exclusion.
+  catch_small: [1, 2],
+  catch_large: [1, 7],
+
+  // Minimum window size. Below this the stimuli won't lay out correctly.
+  min_width: 1000,
+  min_height: 700
+};
+
+/* =====================================================================
+   SETUP
+   ===================================================================== */
+
+const jsPsych = initJsPsych({
+  on_finish: () => {
+    // Only bounce back to Prolific if we actually came from there.
+    if (participant.from_prolific) {
+      window.location = CONFIG.prolific_completion_url;
+    }
+  }
+});
+
+// --- Participant identity ------------------------------------------------
+const prolific_pid = jsPsych.data.getURLVariable("PROLIFIC_PID");
+const study_id     = jsPsych.data.getURLVariable("STUDY_ID");
+const session_id   = jsPsych.data.getURLVariable("SESSION_ID");
+
+const participant = {
+  from_prolific: Boolean(prolific_pid),
+  id: prolific_pid || ("pilot_" + jsPsych.randomization.randomID(8))
+};
+
+const started_at = new Date().toISOString().replace(/[:.]/g, "-");
+const filename = `${participant.id}_${started_at}.csv`;
+
+jsPsych.data.addProperties({
+  participant_id: participant.id,
+  from_prolific: participant.from_prolific,
+  study_id: study_id,
+  session_id: session_id,
+  device_pixel_ratio: window.devicePixelRatio,
+  screen_w: window.screen.width,
+  screen_h: window.screen.height
+});
+
+/* =====================================================================
+   QUADRUPLE GENERATION
+   ===================================================================== */
+
+// All k-subsets of an array
+function combinations(arr, k) {
+  const out = [];
+  (function pick(start, chosen) {
+    if (chosen.length === k) { out.push(chosen.slice()); return; }
+    for (let i = start; i < arr.length; i++) {
+      chosen.push(arr[i]);
+      pick(i + 1, chosen);
+      chosen.pop();
+    }
+  })(0, []);
+  return out;
+}
+
+const steps = Array.from({ length: CONFIG.n_steps }, (_, i) => i + 1);
+
+// C(7,4) = 35 quadruples. Sorted, so [a,b,c,d] splits into two
+// non-overlapping intervals (a,b) and (c,d).
+const quadruples = combinations(steps, 4);
+
+// Full pool: every set crossed with every quadruple
+const pool = [];
+for (const set of CONFIG.sets) {
+  for (const q of quadruples) {
+    pool.push({ set: set, lower: [q[0], q[1]], upper: [q[2], q[3]] });
+  }
+}
+
+// Each participant sees a random slice; coverage accumulates across the sample.
+const sampled = jsPsych.randomization.sampleWithoutReplacement(pool, CONFIG.n_real_trials);
+
+// Catch trials, spread across sets
+const catch_sets = jsPsych.randomization.sampleWithReplacement(CONFIG.sets, CONFIG.n_catch_trials);
+const catches = catch_sets.map(set => ({
+  set: set,
+  lower: CONFIG.catch_small,
+  upper: CONFIG.catch_large,
+  is_catch: true
+}));
+
+const trial_specs = jsPsych.randomization.shuffle(sampled.concat(catches));
+
+/* =====================================================================
+   TRIAL RENDERING
+   ===================================================================== */
+
+function intervalHTML(set, pair) {
+  return `<div class="interval">
+    <img src="${CONFIG.image_path(set, pair[0])}" alt="">
+    <img src="${CONFIG.image_path(set, pair[1])}" alt="">
+  </div>`;
+}
+
+function buildTrial(spec) {
+  // Randomise which interval appears on top, so any vertical response bias
+  // doesn't align with interval size.
+  const upper_on_top = Math.random() < 0.5;
+  const top = upper_on_top ? spec.upper : spec.lower;
+  const bottom = upper_on_top ? spec.lower : spec.upper;
+
+  return {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+      <div class="quad-prompt">Which row shows the bigger change in texture scale?</div>
+      <div class="quad">
+        ${intervalHTML(spec.set, top)}
+        ${intervalHTML(spec.set, bottom)}
+      </div>`,
+    choices: ["Top row", "Bottom row"],
+    data: {
+      task: "mlds",
+      set: spec.set,
+      lower_interval: spec.lower.join("-"),
+      upper_interval: spec.upper.join("-"),
+      top_interval: top.join("-"),
+      bottom_interval: bottom.join("-"),
+      upper_on_top: upper_on_top,
+      is_catch: Boolean(spec.is_catch)
+    },
+    on_finish: (data) => {
+      // Did they choose the wider-spaced interval?
+      const chose_top = data.response === 0;
+      data.chose_upper = (chose_top === upper_on_top);
+      if (data.is_catch) data.catch_correct = data.chose_upper;
+    }
+  };
+}
+
+/* =====================================================================
+   TIMELINE
+   ===================================================================== */
+
+const timeline = [];
+
+// --- Device screening ----------------------------------------------------
+timeline.push({
+  type: jsPsychBrowserCheck,
+  inclusion_function: (data) => {
+    return data.mobile === false &&
+           data.width >= CONFIG.min_width &&
+           data.height >= CONFIG.min_height;
+  },
+  exclusion_message: (data) => {
+    if (data.mobile) {
+      return `<div class="prose"><h2>Desktop required</h2>
+        <p>This study presents images that have to be shown at a fixed size,
+        so it can't run on a phone or tablet. Please return the study on
+        Prolific so someone else can take it.</p></div>`;
+    }
+    return `<div class="prose"><h2>Window too small</h2>
+      <p>This study needs a window at least ${CONFIG.min_width} × ${CONFIG.min_height} pixels.
+      Try maximising your browser window and reloading. If your screen is
+      smaller than that, please return the study on Prolific.</p></div>`;
+  }
+});
+
+// --- Preload -------------------------------------------------------------
+// Every image, loaded up front, so no trial waits on the network.
+const all_images = [];
+for (const set of CONFIG.sets) {
+  for (const step of steps) all_images.push(CONFIG.image_path(set, step));
+}
+
+timeline.push({
+  type: jsPsychPreload,
+  images: all_images,
+  message: `<div class="prose"><p>Loading images. This takes a few
+    seconds on a slower connection.</p></div>`,
+  error_message: `<div class="prose"><h2>Images didn't load</h2>
+    <p>Something went wrong fetching the study images. Reload the page to
+    try again.</p></div>`,
+  show_progress_bar: true,
+  continue_after_error: false
+});
+
+// --- Consent -------------------------------------------------------------
+timeline.push({
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<div class="prose">
+    <h2>About this study</h2>
+    <p>You'll compare pairs of computer-generated images and judge how much
+    the texture changes between them. There are no right or wrong answers for
+    most of the comparisons — we're measuring how the change looks to people.</p>
+    <p>It takes about 8 minutes. We record your responses, your response times,
+    and basic information about your screen. We don't collect anything that
+    identifies you personally.</p>
+    <p>You can stop at any time by closing the tab.</p>
+    <p><em>[Replace this paragraph with your institution's approved consent
+    text and ethics approval number before launch.]</em></p>
+  </div>`,
+  choices: ["I agree to take part"]
+});
+
+// --- Fullscreen ----------------------------------------------------------
+timeline.push({
+  type: jsPsychFullscreen,
+  fullscreen_mode: true,
+  message: `<div class="prose"><p>The study runs in fullscreen so the images
+    are shown at a consistent size. Please don't zoom or resize while
+    it's running.</p></div>`,
+  button_label: "Continue"
+});
+
+// --- Instructions --------------------------------------------------------
+const example_set = CONFIG.sets[0];
+timeline.push({
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<div class="prose">
+    <h2>What to do</h2>
+    <p>On each screen you'll see two rows. Each row holds two versions of the
+    same image, differing in the <strong>size of the texture</strong> — the
+    scale of the brush marks, grain, or pattern.</p>
+    <p>Your job is to decide <strong>which row changes more</strong> between its
+    left and right image. Not which row has bigger texture overall — which row
+    has the bigger <em>difference</em>.</p>
+    <ul>
+      <li>Go with your first impression. Don't study them.</li>
+      <li>Judge texture size, not colour, brightness, or subject matter.</li>
+      <li>Some comparisons are close. Guess when you're unsure — that's expected.</li>
+    </ul>
+  </div>`,
+  choices: ["Show me an example"]
+});
+
+timeline.push({
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `
+    <div class="quad-prompt">Here the <strong>top row</strong> changes more.</div>
+    <div class="quad">
+      ${intervalHTML(example_set, [1, 7])}
+      ${intervalHTML(example_set, [1, 2])}
+    </div>`,
+  choices: ["Start"],
+  post_trial_gap: 400
+});
+
+// --- Main trials ---------------------------------------------------------
+trial_specs.forEach(spec => timeline.push(buildTrial(spec)));
+
+// --- Save ----------------------------------------------------------------
+timeline.push({
+  type: jsPsychPipe,
+  action: "save",
+  experiment_id: CONFIG.pipe_id,
+  filename: filename,
+  data_string: () => jsPsych.data.get().csv()
+});
+
+// --- Completion, with a fallback if the upload failed --------------------
+timeline.push({
+  type: jsPsychHtmlKeyboardResponse,
+  choices: "NO_KEYS",
+  trial_duration: null,
+  stimulus: () => {
+    const save = jsPsych.data.get().filter({ trial_type: "pipe" }).values()[0];
+    const failed = save && save.success === false;
+
+    if (failed) {
+      return `<div class="prose">
+        <h2>Couldn't upload your responses</h2>
+        <p>Your answers are safe in this browser tab but didn't reach our
+        server. Click below to download the file, then message us through
+        Prolific and attach it. You'll be paid either way.</p>
+        <p><button class="jspsych-btn" id="dl">Download my responses</button></p>
+        <p>Then return to Prolific:
+        <a href="${CONFIG.prolific_completion_url}">complete the study</a>.</p>
+      </div>`;
+    }
+
+    return `<div class="prose">
+      <h2>Thank you</h2>
+      <p>Your responses have been recorded.
+      ${participant.from_prolific
+        ? "You'll be returned to Prolific in a moment."
+        : "This was a pilot run — no Prolific redirect."}</p>
+    </div>`;
+  },
+  on_load: () => {
+    const btn = document.getElementById("dl");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const blob = new Blob([jsPsych.data.get().csv()], { type: "text/csv" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+    });
+  },
+  on_start: () => {
+    const save = jsPsych.data.get().filter({ trial_type: "pipe" }).values()[0];
+    const failed = save && save.success === false;
+    // Give a successful run a couple of seconds, then redirect.
+    if (!failed) jsPsych.pluginAPI.setTimeout(() => jsPsych.finishTrial(), 2500);
+  }
+});
+
+jsPsych.run(timeline);
+</script>
+</html>
