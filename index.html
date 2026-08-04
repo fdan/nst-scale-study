@@ -81,14 +81,16 @@ const CONFIG = {
   prolific_completion_url: "https://app.prolific.com/submissions/complete?cc=REPLACE_ME",
 
   // Your content/style sets. These strings must match your filenames.
-  sets: ["set01", "set02", "set03", "set04", "set05", "set06", "set07", "set08"],
-
+  sets: ["sweep01", "sweep02", "sweep03", "sweep04",
+         "sweep05", "sweep06", "sweep07", "sweep08"],
+    
   // Number of scale steps per set
   n_steps: 7,
 
   // How a stimulus filename is built. Adjust to match what you exported.
   // Default expects:  images/set01_step3.png
-  image_path: (set, step) => `images/${set}_step${step}.jpg`,
+  image_path: (set, step) => `images/step${String(step).padStart(2, "0")}_${set}.jpg`,
+    
 
   // Session structure
   n_real_trials: 31,
