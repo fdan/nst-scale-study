@@ -82,23 +82,25 @@ const CONFIG = {
 
   // Your content/style sets. These strings must match your filenames.
   sets: ["set01", "set02", "set03", "set04",
-         "set05", "set06", "set07", "set08"],
+         "set05", "set06", "set07", "set08",
+         "set09", "set10", "set11", "set12"],
 
-  // Number of scale steps per set
-  n_steps: 7,
+  // Number of scale steps per set. C(6,4) = 15 quadruples per set.
+  n_steps: 6,
 
   // How a stimulus filename is built. Adjust to match what you exported.
-  // Default expects:  images/set01_step3.png
+  // Default expects:  images/set01_step03.jpg
   image_path: (set, step) => `images/${set}_step${String(step).padStart(2, "0")}.jpg`,
 
-  // Session structure
-  n_real_trials: 31,
+  // Session structure. Each participant gets this many sets, and does the
+  // COMPLETE quadruple design for each — no partial coverage of any set.
+  sets_per_participant: 3,          // 3 x 15 = 45 real trials
   n_catch_trials: 4,
 
   // Catch trials contrast a tiny interval against a huge one. A participant
   // paying any attention gets these right; used only for exclusion.
   catch_small: [1, 2],
-  catch_large: [1, 7],
+  catch_large: [1, 6],
 
   // Minimum window size. Below this the stimuli won't lay out correctly.
   min_width: 1000,
@@ -131,11 +133,29 @@ const participant = {
 const started_at = new Date().toISOString().replace(/[:.]/g, "-");
 const filename = `${participant.id}_${started_at}.csv`;
 
+/* =====================================================================
+   SET ASSIGNMENT
+
+   12 sets, 3 per participant. Random assignment gives each set roughly
+   a quarter of the sample: at 60-70 participants that is 15-18 observers
+   per set, each contributing one complete pass through its 15 quadruples.
+   ===================================================================== */
+
+const assigned_sets = jsPsych.randomization
+  .sampleWithoutReplacement(CONFIG.sets, CONFIG.sets_per_participant);
+
+// The worked example is drawn from a set this participant will NOT be
+// judging, so the instruction screen can't prime their responses.
+const unassigned = CONFIG.sets.filter(s => !assigned_sets.includes(s));
+const example_set = jsPsych.randomization.sampleWithoutReplacement(unassigned, 1)[0];
+
 jsPsych.data.addProperties({
   participant_id: participant.id,
   from_prolific: participant.from_prolific,
   study_id: study_id,
   session_id: session_id,
+  assigned_sets: assigned_sets.join(","),
+  example_set: example_set,
   device_pixel_ratio: window.devicePixelRatio,
   screen_w: window.screen.width,
   screen_h: window.screen.height
@@ -161,23 +181,21 @@ function combinations(arr, k) {
 
 const steps = Array.from({ length: CONFIG.n_steps }, (_, i) => i + 1);
 
-// C(7,4) = 35 quadruples. Sorted, so [a,b,c,d] splits into two
+// C(6,4) = 15 quadruples. Sorted, so [a,b,c,d] splits into two
 // non-overlapping intervals (a,b) and (c,d).
 const quadruples = combinations(steps, 4);
 
-// Full pool: every set crossed with every quadruple
-const pool = [];
-for (const set of CONFIG.sets) {
+// Every assigned set crossed with every quadruple — the complete design.
+const trials = [];
+for (const set of assigned_sets) {
   for (const q of quadruples) {
-    pool.push({ set: set, lower: [q[0], q[1]], upper: [q[2], q[3]] });
+    trials.push({ set: set, lower: [q[0], q[1]], upper: [q[2], q[3]] });
   }
 }
 
-// Each participant sees a random slice; coverage accumulates across the sample.
-const sampled = jsPsych.randomization.sampleWithoutReplacement(pool, CONFIG.n_real_trials);
-
-// Catch trials, spread across sets
-const catch_sets = jsPsych.randomization.sampleWithReplacement(CONFIG.sets, CONFIG.n_catch_trials);
+// Catch trials, spread across the assigned sets
+const catch_sets = jsPsych.randomization
+  .sampleWithReplacement(assigned_sets, CONFIG.n_catch_trials);
 const catches = catch_sets.map(set => ({
   set: set,
   lower: CONFIG.catch_small,
@@ -185,7 +203,7 @@ const catches = catch_sets.map(set => ({
   is_catch: true
 }));
 
-const trial_specs = jsPsych.randomization.shuffle(sampled.concat(catches));
+const trial_specs = jsPsych.randomization.shuffle(trials.concat(catches));
 
 /* =====================================================================
    TRIAL RENDERING
@@ -262,9 +280,10 @@ timeline.push({
 });
 
 // --- Preload -------------------------------------------------------------
-// Every image, loaded up front, so no trial waits on the network.
+// Only this participant's sets plus the example set: 4 x 6 = 24 images,
+// rather than all 12 x 6 = 72. Keeps the wait short on a slow connection.
 const all_images = [];
-for (const set of CONFIG.sets) {
+for (const set of assigned_sets.concat([example_set])) {
   for (const step of steps) all_images.push(CONFIG.image_path(set, step));
 }
 
@@ -288,7 +307,7 @@ timeline.push({
     <p>You'll compare pairs of computer-generated images and judge how much
     the texture changes between them. There are no right or wrong answers for
     most of the comparisons — we're measuring how the change looks to people.</p>
-    <p>It takes about 8 minutes. We record your responses, your response times,
+    <p>It takes about 10 minutes. We record your responses, your response times,
     and basic information about your screen. We don't collect anything that
     identifies you personally.</p>
     <p>You can stop at any time by closing the tab.</p>
@@ -309,7 +328,6 @@ timeline.push({
 });
 
 // --- Instructions --------------------------------------------------------
-const example_set = CONFIG.sets[0];
 timeline.push({
   type: jsPsychHtmlButtonResponse,
   stimulus: `<div class="prose">
@@ -324,6 +342,7 @@ timeline.push({
       <li>Go with your first impression. Don't study them.</li>
       <li>Judge texture size, not colour, brightness, or subject matter.</li>
       <li>Some comparisons are close. Guess when you're unsure — that's expected.</li>
+      <li>There are ${trial_specs.length} comparisons. It goes quickly.</li>
     </ul>
   </div>`,
   choices: ["Show me an example"]
@@ -334,7 +353,7 @@ timeline.push({
   stimulus: `
     <div class="quad-prompt">Here the <strong>top row</strong> changes more.</div>
     <div class="quad">
-      ${intervalHTML(example_set, [1, 7])}
+      ${intervalHTML(example_set, [1, 6])}
       ${intervalHTML(example_set, [1, 2])}
     </div>`,
   choices: ["Start"],
