@@ -27,14 +27,14 @@
          resolution. The 220px allowance covers the prompt, the gap between
          intervals, and the response buttons. Falls back to 240px at the
          smallest permitted window, which is what it used to be fixed at. */
-      --img-cap: 360px;
+      --img-cap: 460px;
       --img-size: min(
         var(--img-cap),
-        calc((100vh - 220px) / 2),
+        calc((100vh - 150px) / 2),
         calc((100vw - 80px) / 2)
       );
       --gap-within: 14px;  /* gap between the two images of one interval */
-      --gap-between: 34px; /* gap between the two intervals */
+      --gap-between: 22px; /* gap between the two intervals */
     }
 
     html, body {
@@ -44,6 +44,12 @@
     }
 
     .jspsych-display-element { font-size: 16px; }
+
+    /* jsPsych centres its content in a wrapper with generous default
+       padding and a capped width. On the trial screens that padding is
+       the main source of dead space above and below the stimuli. */
+    .jspsych-content-wrapper { padding: 0 !important; }
+    .jspsych-content { max-width: none !important; padding: 0 !important; }
 
     /* Readable text panel so instructions aren't set on mid-grey */
     .prose {
@@ -60,16 +66,16 @@
 
     /* --- Quadruple layout --------------------------------------------- */
     .quad { display: flex; flex-direction: column; align-items: center;
-            gap: var(--gap-between); margin-bottom: 26px; }
+            gap: var(--gap-between); margin-bottom: 14px; }
     .interval { display: flex; gap: var(--gap-within); }
     .interval img {
       width: var(--img-size); height: var(--img-size);
       display: block; image-rendering: auto;
     }
-    .quad-prompt { margin-bottom: 20px; font-size: 17px; }
+    .quad-prompt { margin: 0 0 10px; font-size: 17px; }
 
     .jspsych-btn {
-      font-size: 16px; padding: 10px 26px; margin: 0 10px;
+      font-size: 16px; padding: 8px 26px; margin: 0 10px;
       border-radius: 3px; cursor: pointer;
     }
     .jspsych-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
