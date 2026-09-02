@@ -1,0 +1,462 @@
+"width","height","webaudio","browser","browser_version","mobile","os","fullscreen","vsync_rate","webcam","microphone","trial_type","trial_index","plugin_version","time_elapsed","participant_id","from_prolific","study_id","session_id","device_pixel_ratio","screen_w","screen_h","success","timeout","failed_images","failed_audio","failed_video","rt","stimulus","response","task","set","lower_interval","upper_interval","top_interval","bottom_interval","upper_on_top","is_catch","chose_upper","catch_correct"
+"1186","1030","true","chrome","134.0.0","false","Linux","true","60.18","false","true","browser-check","0","2.1.0","1007","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","","","","","","","","","","","","",""
+"","","","","","","","","","","","preload","1","2.1.0","16579","pilot_tyznsfev","false","","","1.25","2560","1440","true","false","[]","[]","[]","","","","","","","","","","","","",""
+"","","","","","","","","","","","html-button-response","2","2.1.0","32537","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","15956","<div class=""prose"">
+    <h2>About this study</h2>
+    <p>You'll compare pairs of computer-generated images and judge how much
+    the texture changes between them. There are no right or wrong answers for
+    most of the comparisons — we're measuring how the change looks to people.</p>
+    <p>It takes about 8 minutes. We record your responses, your response times,
+    and basic information about your screen. We don't collect anything that
+    identifies you personally.</p>
+    <p>You can stop at any time by closing the tab.</p>
+    <p><em>[Replace this paragraph with your institution's approved consent
+    text and ethics approval number before launch.]</em></p>
+  </div>","0","","","","","","","","","",""
+"","","","","","","","","","","","fullscreen","3","2.1.0","38472","pilot_tyznsfev","false","","","1.25","2560","1440","true","","","","","4931","","","","","","","","","","","",""
+"","","","","","","","","","","","html-button-response","4","2.1.0","60291","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","21818","<div class=""prose"">
+    <h2>What to do</h2>
+    <p>On each screen you'll see two rows. Each row holds two versions of the
+    same image, differing in the <strong>size of the texture</strong> — the
+    scale of the brush marks, grain, or pattern.</p>
+    <p>Your job is to decide <strong>which row changes more</strong> between its
+    left and right image. Not which row has bigger texture overall — which row
+    has the bigger <em>difference</em>.</p>
+    <ul>
+      <li>Go with your first impression. Don't study them.</li>
+      <li>Judge texture size, not colour, brightness, or subject matter.</li>
+      <li>Some comparisons are close. Guess when you're unsure — that's expected.</li>
+    </ul>
+  </div>","0","","","","","","","","","",""
+"","","","","","","","","","","","html-button-response","5","2.1.0","67689","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","7397","
+    <div class=""quad-prompt"">Here the <strong>top row</strong> changes more.</div>
+    <div class=""quad"">
+      <div class=""interval"">
+    <img src=""images/set01_step01.jpg"" alt="""">
+    <img src=""images/set01_step07.jpg"" alt="""">
+  </div>
+      <div class=""interval"">
+    <img src=""images/set01_step01.jpg"" alt="""">
+    <img src=""images/set01_step02.jpg"" alt="""">
+  </div>
+    </div>","0","","","","","","","","","",""
+"","","","","","","","","","","","html-button-response","6","2.1.0","82244","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","14151","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set04_step06.jpg"" alt="""">
+    <img src=""images/set04_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set04_step01.jpg"" alt="""">
+    <img src=""images/set04_step02.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set04","1-2","6-7","6-7","1-2","true","false","false",""
+"","","","","","","","","","","","html-button-response","7","2.1.0","90463","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","8217","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set03_step01.jpg"" alt="""">
+    <img src=""images/set03_step02.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set03_step06.jpg"" alt="""">
+    <img src=""images/set03_step07.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set03","1-2","6-7","1-2","6-7","false","false","false",""
+"","","","","","","","","","","","html-button-response","8","2.1.0","93567","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","3102","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set06_step03.jpg"" alt="""">
+    <img src=""images/set06_step06.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set06_step01.jpg"" alt="""">
+    <img src=""images/set06_step02.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set06","1-2","3-6","3-6","1-2","true","false","true",""
+"","","","","","","","","","","","html-button-response","9","2.1.0","116179","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","22610","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set03_step01.jpg"" alt="""">
+    <img src=""images/set03_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set03_step05.jpg"" alt="""">
+    <img src=""images/set03_step07.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set03","1-3","5-7","1-3","5-7","false","false","false",""
+"","","","","","","","","","","","html-button-response","10","2.1.0","120803","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","4621","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set01_step02.jpg"" alt="""">
+    <img src=""images/set01_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set01_step04.jpg"" alt="""">
+    <img src=""images/set01_step06.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set01","2-3","4-6","2-3","4-6","false","false","true",""
+"","","","","","","","","","","","html-button-response","11","2.1.0","125851","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","5045","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set02_step02.jpg"" alt="""">
+    <img src=""images/set02_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set02_step04.jpg"" alt="""">
+    <img src=""images/set02_step06.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set02","2-3","4-6","2-3","4-6","false","false","true",""
+"","","","","","","","","","","","html-button-response","12","2.1.0","133277","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","7423","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set08_step01.jpg"" alt="""">
+    <img src=""images/set08_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set08_step04.jpg"" alt="""">
+    <img src=""images/set08_step06.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set08","1-3","4-6","1-3","4-6","false","false","true",""
+"","","","","","","","","","","","html-button-response","13","2.1.0","138723","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","5443","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set08_step01.jpg"" alt="""">
+    <img src=""images/set08_step02.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set08_step01.jpg"" alt="""">
+    <img src=""images/set08_step07.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set08","1-2","1-7","1-2","1-7","false","true","true","true"
+"","","","","","","","","","","","html-button-response","14","2.1.0","144151","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","5425","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set06_step01.jpg"" alt="""">
+    <img src=""images/set06_step04.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set06_step05.jpg"" alt="""">
+    <img src=""images/set06_step07.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set06","1-4","5-7","1-4","5-7","false","false","true",""
+"","","","","","","","","","","","html-button-response","15","2.1.0","156583","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","12431","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set04_step04.jpg"" alt="""">
+    <img src=""images/set04_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set04_step01.jpg"" alt="""">
+    <img src=""images/set04_step02.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set04","1-2","4-7","4-7","1-2","true","false","true",""
+"","","","","","","","","","","","html-button-response","16","2.1.0","158559","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","1974","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set04_step05.jpg"" alt="""">
+    <img src=""images/set04_step06.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set04_step01.jpg"" alt="""">
+    <img src=""images/set04_step02.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set04","1-2","5-6","5-6","1-2","true","false","false",""
+"","","","","","","","","","","","html-button-response","17","2.1.0","161961","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","3401","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set03_step06.jpg"" alt="""">
+    <img src=""images/set03_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set03_step03.jpg"" alt="""">
+    <img src=""images/set03_step04.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set03","3-4","6-7","6-7","3-4","true","false","false",""
+"","","","","","","","","","","","html-button-response","18","2.1.0","165054","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","3091","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set02_step01.jpg"" alt="""">
+    <img src=""images/set02_step02.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set02_step04.jpg"" alt="""">
+    <img src=""images/set02_step07.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set02","1-2","4-7","1-2","4-7","false","false","true",""
+"","","","","","","","","","","","html-button-response","19","2.1.0","170327","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","5271","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set07_step06.jpg"" alt="""">
+    <img src=""images/set07_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set07_step01.jpg"" alt="""">
+    <img src=""images/set07_step03.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set07","1-3","6-7","6-7","1-3","true","false","true",""
+"","","","","","","","","","","","html-button-response","20","2.1.0","173371","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","3042","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set03_step04.jpg"" alt="""">
+    <img src=""images/set03_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set03_step02.jpg"" alt="""">
+    <img src=""images/set03_step03.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set03","2-3","4-7","4-7","2-3","true","false","true",""
+"","","","","","","","","","","","html-button-response","21","2.1.0","179771","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","6399","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set04_step05.jpg"" alt="""">
+    <img src=""images/set04_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set04_step03.jpg"" alt="""">
+    <img src=""images/set04_step04.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set04","3-4","5-7","5-7","3-4","true","false","false",""
+"","","","","","","","","","","","html-button-response","22","2.1.0","184491","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","4718","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set06_step04.jpg"" alt="""">
+    <img src=""images/set06_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set06_step01.jpg"" alt="""">
+    <img src=""images/set06_step03.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set06","1-3","4-7","4-7","1-3","true","false","true",""
+"","","","","","","","","","","","html-button-response","23","2.1.0","187197","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","2704","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set02_step01.jpg"" alt="""">
+    <img src=""images/set02_step02.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set02_step03.jpg"" alt="""">
+    <img src=""images/set02_step06.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set02","1-2","3-6","1-2","3-6","false","false","true",""
+"","","","","","","","","","","","html-button-response","24","2.1.0","191565","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","4366","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set03_step05.jpg"" alt="""">
+    <img src=""images/set03_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set03_step03.jpg"" alt="""">
+    <img src=""images/set03_step04.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set03","3-4","5-7","5-7","3-4","true","false","true",""
+"","","","","","","","","","","","html-button-response","25","2.1.0","193261","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","1694","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set06_step01.jpg"" alt="""">
+    <img src=""images/set06_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set06_step04.jpg"" alt="""">
+    <img src=""images/set06_step06.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set06","1-3","4-6","1-3","4-6","false","false","true",""
+"","","","","","","","","","","","html-button-response","26","2.1.0","213707","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","20444","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set03_step02.jpg"" alt="""">
+    <img src=""images/set03_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set03_step05.jpg"" alt="""">
+    <img src=""images/set03_step06.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set03","2-3","5-6","2-3","5-6","false","false","true",""
+"","","","","","","","","","","","html-button-response","27","2.1.0","215633","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","1924","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set03_step06.jpg"" alt="""">
+    <img src=""images/set03_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set03_step01.jpg"" alt="""">
+    <img src=""images/set03_step04.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set03","1-4","6-7","6-7","1-4","true","false","false",""
+"","","","","","","","","","","","html-button-response","28","2.1.0","219851","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","4216","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set05_step02.jpg"" alt="""">
+    <img src=""images/set05_step05.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set05_step06.jpg"" alt="""">
+    <img src=""images/set05_step07.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set05","2-5","6-7","2-5","6-7","false","false","false",""
+"","","","","","","","","","","","html-button-response","29","2.1.0","226580","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","6727","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set07_step05.jpg"" alt="""">
+    <img src=""images/set07_step06.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set07_step02.jpg"" alt="""">
+    <img src=""images/set07_step03.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set07","2-3","5-6","5-6","2-3","true","false","true",""
+"","","","","","","","","","","","html-button-response","30","2.1.0","228973","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","2391","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set06_step01.jpg"" alt="""">
+    <img src=""images/set06_step02.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set06_step01.jpg"" alt="""">
+    <img src=""images/set06_step07.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set06","1-2","1-7","1-2","1-7","false","true","true","true"
+"","","","","","","","","","","","html-button-response","31","2.1.0","231955","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","2980","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set04_step01.jpg"" alt="""">
+    <img src=""images/set04_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set04_step04.jpg"" alt="""">
+    <img src=""images/set04_step07.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set04","1-3","4-7","1-3","4-7","false","false","false",""
+"","","","","","","","","","","","html-button-response","32","2.1.0","237447","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","5491","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set05_step05.jpg"" alt="""">
+    <img src=""images/set05_step06.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set05_step01.jpg"" alt="""">
+    <img src=""images/set05_step02.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set05","1-2","5-6","5-6","1-2","true","false","true",""
+"","","","","","","","","","","","html-button-response","33","2.1.0","241153","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","3705","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set02_step01.jpg"" alt="""">
+    <img src=""images/set02_step04.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set02_step05.jpg"" alt="""">
+    <img src=""images/set02_step06.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set02","1-4","5-6","1-4","5-6","false","false","true",""
+"","","","","","","","","","","","html-button-response","34","2.1.0","248083","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","6928","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set01_step04.jpg"" alt="""">
+    <img src=""images/set01_step05.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set01_step06.jpg"" alt="""">
+    <img src=""images/set01_step07.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set01","4-5","6-7","4-5","6-7","false","false","false",""
+"","","","","","","","","","","","html-button-response","35","2.1.0","251131","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","3047","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set05_step02.jpg"" alt="""">
+    <img src=""images/set05_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set05_step06.jpg"" alt="""">
+    <img src=""images/set05_step07.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set05","2-3","6-7","2-3","6-7","false","false","true",""
+"","","","","","","","","","","","html-button-response","36","2.1.0","264039","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","12907","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set08_step02.jpg"" alt="""">
+    <img src=""images/set08_step03.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set08_step05.jpg"" alt="""">
+    <img src=""images/set08_step06.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set08","2-3","5-6","2-3","5-6","false","false","false",""
+"","","","","","","","","","","","html-button-response","37","2.1.0","268117","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","4076","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set01_step01.jpg"" alt="""">
+    <img src=""images/set01_step02.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set01_step01.jpg"" alt="""">
+    <img src=""images/set01_step07.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set01","1-2","1-7","1-2","1-7","false","true","true","true"
+"","","","","","","","","","","","html-button-response","38","2.1.0","273443","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","5324","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set06_step02.jpg"" alt="""">
+    <img src=""images/set06_step04.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set06_step05.jpg"" alt="""">
+    <img src=""images/set06_step07.jpg"" alt="""">
+  </div>
+      </div>","1","mlds","set06","2-4","5-7","2-4","5-7","false","false","true",""
+"","","","","","","","","","","","html-button-response","39","2.1.0","275768","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","2323","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set08_step01.jpg"" alt="""">
+    <img src=""images/set08_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set08_step01.jpg"" alt="""">
+    <img src=""images/set08_step02.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set08","1-2","1-7","1-7","1-2","true","true","true","true"
+"","","","","","","","","","","","html-button-response","40","2.1.0","288881","pilot_tyznsfev","false","","","1.25","2560","1440","","","","","","13111","
+      <div class=""quad-prompt"">Which row shows the bigger change in texture scale?</div>
+      <div class=""quad"">
+        <div class=""interval"">
+    <img src=""images/set02_step06.jpg"" alt="""">
+    <img src=""images/set02_step07.jpg"" alt="""">
+  </div>
+        <div class=""interval"">
+    <img src=""images/set02_step02.jpg"" alt="""">
+    <img src=""images/set02_step03.jpg"" alt="""">
+  </div>
+      </div>","0","mlds","set02","2-3","6-7","6-7","2-3","true","false","true",""
