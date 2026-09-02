@@ -22,7 +22,17 @@
       --field: #7f7f7f;
       --ink: #111;
       --panel: #eae8e4;
-      --img-size: 240px;   /* fixed display size for every stimulus */
+      /* Stimuli are square and shown two-up in two rows. Size scales to
+         whatever the window allows, capped so it never exceeds the source
+         resolution. The 220px allowance covers the prompt, the gap between
+         intervals, and the response buttons. Falls back to 240px at the
+         smallest permitted window, which is what it used to be fixed at. */
+      --img-cap: 360px;
+      --img-size: min(
+        var(--img-cap),
+        calc((100vh - 220px) / 2),
+        calc((100vw - 80px) / 2)
+      );
       --gap-within: 14px;  /* gap between the two images of one interval */
       --gap-between: 34px; /* gap between the two intervals */
     }
